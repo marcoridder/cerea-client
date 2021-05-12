@@ -32,7 +32,7 @@ echo '################################'
 
 sudo rm -rf /srv/cereaclient
 sudo mkdir /srv/cereaclient && sudo chown pi:pi /srv/cereaclient
-git clone git@github.com:marcoridder/cerea-client.git /srv/cereaclient
+git clone https://github.com/marcoridder/cerea-client.git /srv/cereaclient
 cd /srv/cereaclient || exit
 git checkout v1.0.0;
 cp .env.prod .env
