@@ -1,0 +1,8 @@
+{
+    "name": "Cerea client",
+    "short_name": "Cerea client",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "hsl(214, 27%, 26%)",
+    "theme_color": "hsl(214, 27%, 26%)"
+}
