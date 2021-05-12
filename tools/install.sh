@@ -36,7 +36,7 @@ git clone https://github.com/marcoridder/cerea-client.git /srv/cereaclient
 cd /srv/cereaclient || exit
 git checkout v1.0.0;
 cp .env.prod .env
-cp resources/configfiles/appconfig.conf config/appconfig.php
+cp resources/configfiles/appconfig.php config/appconfig.php
 
 /usr/local/bin/composer install --no-dev
 php artisan key:generate
