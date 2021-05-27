@@ -69,7 +69,7 @@ class CereaController extends Controller
                 $response = $this->client->get('https://cerea.marcoridder.nl/cerea-apk/' . $fileName);
 
                 if (!$response->successful()) {
-                    throw new \Exception('Dowloaden van app mislukt vanaf internet');
+                    throw new \Exception(__('Failed to download app from internet'));
                 }
 
                 $storage->put('cerea-versions/' . $fileName, $response->body());
@@ -78,10 +78,10 @@ class CereaController extends Controller
             if ($storage->exists('cerea-versions/'.$fileName)) {
                 return $storage->download('cerea-versions/'.$fileName, $fileName, ['Content-Type' => 'application/vnd.android.package-archive']);
             }
-            throw new \Exception('App niet gevonden');
+            throw new \Exception(__('App not found'));
 
         } catch (\Exception $exception) {
-            return back()->with('error', 'Dowloaden van app mislukt (' . $exception->getMessage() . ')');
+            return back()->with('error', $exception->getMessage());
         }
     }
 

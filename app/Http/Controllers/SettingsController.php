@@ -42,6 +42,8 @@ class SettingsController extends Controller
             ->with('configItems', $this->configItems)
             ->with('config', collect($config))
             ->with('cereaClientVersion', $gitTagOutput[0] ?? null)
+            ->with('languages', config('locale')['languages'])
+            ->with('activeLanguage', $config['locale'] ?? config('app.fallback_locale'))
         ;
     }
 
@@ -54,6 +56,6 @@ class SettingsController extends Controller
 
         $this->filesystem->put('appconfig.php', "<?php\n return ".var_export($appConfig, 1)." ;");
 
-        return redirect(route('settings.index'))->with('status', 'Opgeslagen');
+        return redirect(route('settings.index'))->with('status', __('Saved'));
     }
 }

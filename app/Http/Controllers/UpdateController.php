@@ -29,13 +29,13 @@ class UpdateController extends Controller
         exec('cd '.$this->basePath.' && git tag', $localTags);
 
         if (!in_array($latestReleaseTag, $localTags)) {
-            return back()->with('error', 'Kan release niet ophalen');
+            return back()->with('error', __('Failed to retrieve release'));
         }
 
         exec('cd '.$this->basePath.' && git checkout -f '.$latestReleaseTag.' && composer install --no-dev && echo \'ok\'', $output);
 
         if (!in_array('ok', $output) || $this->getCurrentTag() !== $latestReleaseTag) {
-            return back()->with('error', 'Update mislukt. Voer handmatig uit: '.'cd '.$this->basePath.' && git checkout -f '.$latestReleaseTag.' && composer install --no-dev');
+            return back()->with('error', __('Update failed. Run manually').': cd '.$this->basePath.' && git checkout -f '.$latestReleaseTag.' && composer install --no-dev');
         }
 
         $updateScripts = array_filter(array_map(function ($release) use ($currentTag) {
@@ -59,12 +59,12 @@ class UpdateController extends Controller
             unset($updateOutput);
             exec('cd ' . $this->basePath . ' && sh ' . $updateScript['path'], $updateOutput);
             if (!in_array('ok', $updateOutput)) {
-                return back()->with('error', 'Update script mislukt bij ' . $updateScript['script'] . '. Voer handmatig uit: ' . 'cd ' . resource_path('updatescripts/') . ' && sh ' . implode(' && sh ', array_column($updateScripts, 'script')));
+                return back()->with('error', __('Update script failed at :script. Run manually', ['script' => $updateScript['script']]).': cd ' . resource_path('updatescripts/') . ' && sh ' . implode(' && sh ', array_column($updateScripts, 'script')));
             }
             unset($updateScripts[$key]);
         }
 
-        return back()->with('status', 'Geüpdatet naar versie '.$this->getCurrentTag());
+        return back()->with('status', __('Updated to version :version', ['version' => $this->getCurrentTag()]));
     }
 
     public function checkUpdate(): array
@@ -77,13 +77,13 @@ class UpdateController extends Controller
         if ($latestReleaseTag === $currentTag) {
             return [
                 'updateable' => false,
-                'message' => 'Geen update beschikbaar, we werken eraan.',
+                'message' => __('No update available, we are working on it'),
             ];
         }
 
         return [
             'updateable' => true,
-            'message' => 'Update beschibaar: '.$latestReleaseTag.'<br> Datum: '.date('d-m-Y', strtotime($latestRelease['published_at'])),
+            'message' => __('Update available: :tag <br>Releasedate: :date', ['tag' => $latestReleaseTag, 'date' => date('d-m-Y', strtotime($latestRelease['published_at']))]),
         ];
     }
 

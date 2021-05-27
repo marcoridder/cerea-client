@@ -44,7 +44,8 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": ["app/functions.php"]
     },
     "autoload-dev": {
         "psr-4": {

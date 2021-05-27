@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/wifi', [\App\Http\Controllers\WiFiController::class, 'wifi'])->name('api.wifi');
-Route::get('/checkUpdate', [\App\Http\Controllers\UpdateController::class, 'checkUpdate'])->name('api.checkUpdate');
-Route::get('/systemdata', [\App\Http\Controllers\DashboardController::class, 'systemdata'])->name('api.systemdata');
+Route::group(["prefix" => getLanguagePrefix()], function() {
+    Route::get('/wifi', [\App\Http\Controllers\WiFiController::class, 'wifi'])->name('api.wifi');
+    Route::get('/checkUpdate', [\App\Http\Controllers\UpdateController::class, 'checkUpdate'])->name('api.checkUpdate');
+    Route::get('/systemdata', [\App\Http\Controllers\DashboardController::class, 'systemdata'])->name('api.systemdata');
+});

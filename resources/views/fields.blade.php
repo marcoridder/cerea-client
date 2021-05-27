@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Percelen</div>
+                    <div class="card-header">{{ __('Fields') }}</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -27,7 +27,7 @@
                                                                 {{ $field['name'] }}
                                                             </div>
                                                             <div class="card-body">
-                                                                <h5 class="card-title">Lijnen</h5>
+                                                                <h5 class="card-title">{{ __('Patterns') }}</h5>
                                                                 <p class="card-text">
                                                                 <ul>
                                                                     @foreach($field['patterns'] as $pattern)
@@ -36,7 +36,7 @@
                                                                 </ul>
                                                                 </p>
                                                                 <a href="{{ $field['downloadUrl'] }}"
-                                                                   class="btn btn-primary">Download</a>
+                                                                   class="btn btn-primary">{{ __('Download') }}</a>
                                                                 {{--                                            <a href="{{ $field['editUrl'] }}" class="btn btn-primary">Bewerken</a>--}}
                                                             </div>
                                                             <div class="card-footer text-muted">
