@@ -47,7 +47,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->when(WpaSupplicantHelper::class)
             ->needs(Filesystem::class)
             ->give(function () {
-                return Storage::disk('wpa_supplicant');
+                return Storage::disk(app()->environment('local') ? 'local' : 'wpa_supplicant');
             });
     }
 

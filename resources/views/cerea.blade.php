@@ -24,7 +24,7 @@
                         <div class="col-md-4">
                             <div class="card">
                                 <div class="card-header">
-                                    Cerea app
+                                    {{ __('Cerea app') }}
                                 </div>
 
                                 <div class="card-body">
@@ -34,20 +34,20 @@
                                                 <li class="list-group-item">
                                                     {{ $cereaVersion['version'] }} ({{ $cereaVersion['size'] }})
                                                     <a href="{{ route('cerea.app-download', $cereaVersion['version']) }}" class="js-download-backup-a">
-                                                        <button type="button" class="btn btn-primary js-download-backup-btn">Download</button>
+                                                        <button type="button" class="btn btn-primary js-download-backup-btn">{{ __('Download') }}</button>
                                                     </a>
                                                 </li>
                                             @endforeach
                                         </ul>
                                     @else
-                                        Geen versies gevonden
+                                        {{ __('No versions found') }}
                                     @endif
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <a href="{{ route('cerea.backup') }}" class="js-download-backup-a">
-                                <button type="button" class="btn btn-primary js-download-backup-btn">Download Cerea backup</button>
+                                <button type="button" class="btn btn-primary js-download-backup-btn">{{ __('Download Cerea backup') }}</button>
                             </a>
                         </div>
                     </div>

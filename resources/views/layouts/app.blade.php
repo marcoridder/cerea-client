@@ -32,16 +32,16 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link {{ Route::is('fields.index') ? 'active' : '' }}" href="{{ route('fields.index') }}">Percelen</a>
+                            <a class="nav-link {{ Route::is('fields.index') ? 'active' : '' }}" href="{{ route('fields.index') }}">{{ __('Fields') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ Route::is('wifi.index') ? 'active' : '' }}" href="{{ route('wifi.index') }}">Wifi</a>
+                            <a class="nav-link {{ Route::is('wifi.index') ? 'active' : '' }}" href="{{ route('wifi.index') }}">{{ __('WiFi') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ Route::is('cerea.index') ? 'active' : '' }}" href="{{ route('cerea.index') }}">Cerea</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ Route::is('settings.index') ? 'active' : '' }}" href="{{ route('settings.index') }}">Instellingen</a>
+                            <a class="nav-link {{ Route::is('settings.index') ? 'active' : '' }}" href="{{ route('settings.index') }}">{{ __('Settings') }}</a>
                         </li>
                     </ul>
 

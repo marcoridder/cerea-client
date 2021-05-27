@@ -6,9 +6,9 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    Dashboard
+                    {{ __('Dashboard') }}
                     <a href="{{ route('dashboard.index') }}" class="btn btn-primary float-sm-right">
-                        Vernieuwen
+                        {{ __('Refresh') }}
                     </a>
                 </div>
 
@@ -22,18 +22,18 @@
                         <div class="col-lg-4 col-md-6 mb-4">
                             <div class="card">
                                 <div class="card-header">
-                                    Netwerk
+                                    {{ __('Network') }}
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             @if($hasInternet)
                                                 <div class="alert alert-success">
-                                                    Verbonden met internet
+                                                    {{ __('Connected to the internet') }}
                                                 </div>
                                             @else
                                                 <div class="alert alert-danger">
-                                                    Geen internet verbinding!
+                                                    {{ __('No internet connection') }}!
                                                 </div>
                                             @endif
                                         </div>
@@ -41,11 +41,11 @@
                                             @if($hasWifiNetworks)
                                                 @if($connectedWifiNetwork)
                                                     <div class="alert alert-success">
-                                                        Verbonden met {{$connectedWifiNetwork}}
+                                                        {{ __('Connected with :ssid', ['ssid' => $connectedWifiNetwork]) }}
                                                     </div>
                                                 @else
                                                     <div class="alert alert-danger">
-                                                        Geen wifi netwerk verbonden
+                                                        {{ __('No WiFi connection') }}
                                                     </div>
                                                 @endif
                                             @endif
