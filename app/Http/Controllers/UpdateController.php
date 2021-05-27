@@ -32,10 +32,10 @@ class UpdateController extends Controller
             return back()->with('error', __('Failed to retrieve release'));
         }
 
-        exec('cd '.$this->basePath.' && git checkout -f '.$latestReleaseTag.' && composer install --no-dev && echo \'ok\'', $output);
+        exec('cd '.$this->basePath.' && git checkout -f '.$latestReleaseTag.' && echo \'ok\'', $output);
 
         if (!in_array('ok', $output) || $this->getCurrentTag() !== $latestReleaseTag) {
-            return back()->with('error', __('Update failed. Run manually').': cd '.$this->basePath.' && git checkout -f '.$latestReleaseTag.' && composer install --no-dev');
+            return back()->with('error', __('Update failed. Run manually').': cd '.$this->basePath.' && git checkout -f '.$latestReleaseTag);
         }
 
         $updateScripts = array_filter(array_map(function ($release) use ($currentTag) {
