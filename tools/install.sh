@@ -16,17 +16,6 @@ sudo sed -i 's/export APACHE_RUN_GROUP=www-data/export APACHE_RUN_GROUP=pi/g' /e
 sudo service apache2 restart
 
 echo '################################'
-echo 'INSTALLING DEPENDENCIES'
-echo '################################'
-
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-php -r "if (hash_file('sha384', 'composer-setup.php') === '756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-php composer-setup.php
-sudo mv composer.phar /usr/local/bin/composer
-php -r "unlink('composer-setup.php');"
-
-
-echo '################################'
 echo 'INSTALLING CEREACLIENT'
 echo '################################'
 
@@ -34,11 +23,10 @@ sudo rm -rf /srv/cereaclient
 sudo mkdir /srv/cereaclient && sudo chown pi:pi /srv/cereaclient
 git clone https://github.com/marcoridder/cerea-client.git /srv/cereaclient
 cd /srv/cereaclient || exit
-git checkout v1.1.0;
+git checkout v1.1.1;
 cp .env.prod .env
 cp resources/configfiles/appconfig.php config/appconfig.php
 
-/usr/local/bin/composer install --no-dev
 php artisan key:generate
 
 echo '########################'
