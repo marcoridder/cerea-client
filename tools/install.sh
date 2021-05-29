@@ -23,7 +23,7 @@ sudo rm -rf /srv/cereaclient
 sudo mkdir /srv/cereaclient && sudo chown pi:pi /srv/cereaclient
 git clone https://github.com/marcoridder/cerea-client.git /srv/cereaclient
 cd /srv/cereaclient || exit
-git checkout v1.1.1;
+git checkout v1.1.0;
 cp .env.prod .env
 cp resources/configfiles/appconfig.php config/appconfig.php
 
