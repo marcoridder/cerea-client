@@ -2,7 +2,8 @@
 
 ### An easy to use and easy to install web frontend to help you configure Wifi hotspot and get more out of Cerea GPS 
 
-#### For use on Raspberry Pi only
+- For use on Raspberry Pi only
+- Multilanguage for EN, NL and DE
 
 ## FrontEnd
 <img src="https://raw.githubusercontent.com/marcoridder/cerea-client/master/images/dashboard.png" alt="Dashboard" width="300">

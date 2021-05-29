@@ -6,3 +6,7 @@
 - Fields and download field data
 - Configure Wifi from mobile hotspot
 - Download multiple versions of Cerea Android app 
+
+## [1.1.0] - 2020-05-29
+### Added
+- Multilanguage (NL, EN, DE)
