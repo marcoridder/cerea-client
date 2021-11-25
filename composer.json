@@ -1,10 +1,9 @@
 {
-    "name": "laravel/laravel",
+    "name": "marcoridder/cerea-client",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Cerea Client",
     "keywords": [
-        "framework",
-        "laravel"
+        "cerea"
     ],
     "license": "MIT",
     "require": {
