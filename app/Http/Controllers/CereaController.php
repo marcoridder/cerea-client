@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Modules\CereaServerApi\Clients\Contracts\CereaServerClientAwareInterface;
+use App\Modules\CereaServerApi\Clients\Traits\CereaServerClientAwareTrait;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Client\Factory;
 use Illuminate\Support\Facades\Storage;
 use ZipArchive;
 
-class CereaController extends Controller
+class CereaController extends Controller implements CereaServerClientAwareInterface
 {
+    use CereaServerClientAwareTrait;
+
     /**
      * @var Filesystem
      */
@@ -28,12 +32,10 @@ class CereaController extends Controller
 
     public function index(): View
     {
+
         $cereaVersions = [];
         try {
-            $response = $this->client->get('https://cerea.marcoridder.nl/api/cerea-versions');
-            if ($response->successful()) {
-                $cereaVersions = $response->json();
-            }
+            $cereaVersions = $this->cereaServerClient->getCereaVersions();
         } catch (\Exception $exception) {
 
         }
