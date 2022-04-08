@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.2.1] - 2022-04-08
+### Fixed
+- Fields upload files owner update
+
 ## [1.2.0] - 2022-04-08
 ### Added
 - Fields upload
