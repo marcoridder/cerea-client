@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">
                     {{ __('Dashboard') }}
-                    <a href="{{ route('dashboard.index') }}" class="btn btn-primary float-sm-right">
+                    <a href="{{ route('dashboard.index') }}" class="btn btn-primary float-right">
                         {{ __('Refresh') }}
                     </a>
                 </div>

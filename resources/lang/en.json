@@ -43,5 +43,10 @@
     "Download": "",
     "Download Cerea backup": "",
     "Cerea app": "",
-    "No versions found": ""
+    "No versions found": "",
+    "Upload field": "",
+    "Choose field file": "",
+    "No patterns.txt found": "",
+    "Field :clientName/:fieldName uploaded": "",
+    "Upload field failed (:message)": ""
 }

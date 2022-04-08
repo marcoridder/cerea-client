@@ -43,5 +43,10 @@
     "Download": "Herunterladen",
     "Download Cerea backup": "Laden Sie das Cerea-Backup herunter",
     "Cerea app": "",
-    "No versions found": "Keine Versionen gefunden"
+    "No versions found": "Keine Versionen gefunden",
+    "Upload field": "Hochladen Felder",
+    "Choose field file": "Wählen Felder Datei",
+    "No patterns.txt found": "Kein patterns.txt gefunden",
+    "Field :clientName/:fieldName uploaded": "Felder :clientName/:fieldName hinzugefügt",
+    "Upload field failed (:message)": "Hinzugefügt Felder gescheitert (:message)"
 }

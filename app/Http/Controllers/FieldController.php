@@ -5,19 +5,25 @@ namespace App\Http\Controllers;
 use Illuminate\Contracts\Filesystem\FileNotFoundException as ContractFileNotFoundException;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use ZipArchive;
 
 class FieldController extends Controller
 {
+    protected ZipArchive $zipArchive;
     /**
      * @var Filesystem
      */
     private $filesystem;
 
-    public function __construct(Filesystem $filesystem)
+    public function __construct(
+        Filesystem $filesystem,
+        ZipArchive $zipArchive
+    )
     {
         $this->filesystem = $filesystem;
+        $this->zipArchive = $zipArchive;
     }
 
     public function fields(): View
@@ -30,21 +36,44 @@ class FieldController extends Controller
         return view('fields')->with('fields', $fields);
     }
 
+    public function uploadField(Request $request)
+    {
+        try {
+            $file = $request->file('file');
+            $this->zipArchive->open($file->getRealPath());
+
+            for ($i = 0; $i < $this->zipArchive->numFiles; $i++) {
+                $filename = $this->zipArchive->getNameIndex($i);
+                if (basename($filename) === 'patterns.txt') {
+                    $this->zipArchive->extractTo(config('appconfig.cerea_path') . '/Data/', $filename);
+                    $this->zipArchive->close();
+                    [$clientName, $fieldName] = explode('/', $filename);
+
+                    return redirect()->back()->with('status', __("Field :clientName/:fieldName uploaded", ['clientName' => $clientName, 'fieldName' => $fieldName]));
+                }
+            }
+            throw new \Exception(__('No patterns.txt found'));
+        } catch (\ValueError | \Exception $exception) {
+            return redirect()->back()->with('error', __('Upload field failed (:message)', ['message' => $exception->getMessage()]));
+        }
+    }
+
     public function downloadField(string $fieldSlug)
     {
         if($field = $this->getField($fieldSlug)) {
-            $zip = new ZipArchive;
+            $zip = $this->zipArchive;
             $fileName = 'field.zip';
 
             if ($zip->open(storage_path($fileName), ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
                 $files = $this->filesystem->allFiles($field['name']);
-                foreach ($files as $key => $value) {
-                    $zip->addFile(config('appconfig.cerea_path') . '/Data/' . $value, $value);
+                foreach ($files as $file) {
+                    if(basename($file) === 'patterns.txt') {
+                        $zip->addFile(config('appconfig.cerea_path') . '/Data/' . $file, $file);
+                        $zip->close();
+                        return response()->download(storage_path($fileName), date('Y-m-d_H-i') . '_' . $field['slug'] . '.zip')->deleteFileAfterSend();
+                    }
                 }
-                $zip->close();
             }
-
-            return response()->download(storage_path($fileName), date('Y-m-d_H-i') . '_' . $field['slug'] . '.zip')->deleteFileAfterSend();
         }
         abort(404);
     }

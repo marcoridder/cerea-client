@@ -21,6 +21,7 @@ $router
         $router->get('/', [Controllers\DashboardController::class, 'index'])->name('dashboard.index');
 
         $router->get('fields', [Controllers\FieldController::class, 'fields'])->name('fields.index');
+        $router->post('fields/upload', [Controllers\FieldController::class, 'uploadField'])->name('fields.upload');
         //$router->get('fields/{field}/edit', [Controllers\FieldController::class, 'editField'])->name('field.edit');
         $router->get('fields/{field}/download', [Controllers\FieldController::class, 'downloadField'])->name('field.download');
 

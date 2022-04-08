@@ -31,7 +31,7 @@
                     <div class="card">
                         <div class="card-header">
                             {{ __('WiFi networks') }}
-                            <button type="button" class="btn btn-primary float-sm-right" id="addNetworkBtn">
+                            <button type="button" class="btn btn-primary float-right" id="addNetworkBtn">
                                 {{ __('Add WiFi network') }}
                             </button>
                         </div>

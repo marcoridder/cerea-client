@@ -43,5 +43,10 @@
     "Download": "",
     "Download Cerea backup": "",
     "Cerea app": "",
-    "No versions found": "Geen versies gevonden"
+    "No versions found": "Geen versies gevonden",
+    "Upload field": "Upload perceel",
+    "Choose field file": "Kies perceel bestand",
+    "No patterns.txt found": "Geen patterns.txt gevonden",
+    "Field :clientName/:fieldName uploaded": "Perceel :clientName/:fieldName toegevoegd",
+    "Upload field failed (:message)": "Toevoegen perceel mislukt (:message)"
 }
