@@ -9,9 +9,9 @@
     "No update available, we are working on it": "Kein Update verfügbar, wir arbeiten daran",
     "Update available: :tag <br>Releasedate: :date": "Update verfügbar :tag <br > Veröffentlichungsdatum :date",
     "Failed to retrieve release": "Veröffentlichung fehlgeschlagen",
-    "Update failed. Run manually": "Update fehlgeschlagen. Manuell ausführen",
-    "Updated to version :version": "Auf Version aktualisiert: Version",
-    "Update script failed at :script. Run manually": "Aktualisierungsskript fehlgeschlagen bei: Version. Manuell ausführen",
+    "Update failed": "Update fehlgeschlagen",
+    "Updated to version :version": "Auf Version aktualisiert :version",
+    "Update script failed at :script": "Aktualisierungsskript fehlgeschlagen bei :script",
     "Saved": "Gespeichert",
     "Fields": "Felder",
     "WiFi": "WLAN",
@@ -19,6 +19,7 @@
     "Language": "Sprache",
     "Save": "Speichern",
     "System Settings": "Systemeinstellungen",
+    "Systemname": "Systemname",
     ":appName version :version": ":appName version :version",
     "Check for update": "Nach Updates suchen",
     "Cancel": "Abbrechen",
@@ -42,5 +43,10 @@
     "Download": "Herunterladen",
     "Download Cerea backup": "Laden Sie das Cerea-Backup herunter",
     "Cerea app": "",
-    "No versions found": "Keine Versionen gefunden"
+    "No versions found": "Keine Versionen gefunden",
+    "Upload field": "Hochladen Felder",
+    "Choose field file": "Wählen Felder Datei",
+    "No patterns.txt found": "Kein patterns.txt gefunden",
+    "Field :clientName/:fieldName uploaded": "Felder :clientName/:fieldName hinzugefügt",
+    "Upload field failed (:message)": "Hinzugefügt Felder gescheitert (:message)"
 }

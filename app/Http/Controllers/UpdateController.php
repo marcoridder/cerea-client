@@ -12,6 +12,8 @@ class UpdateController extends Controller
 
     private $basePath;
 
+    private $releases = [];
+
     public function __construct(Factory $githubClient)
     {
         $this->githubClient = $githubClient;
@@ -35,7 +37,8 @@ class UpdateController extends Controller
         exec('cd '.$this->basePath.' && git checkout -f '.$latestReleaseTag.' && echo \'ok\'', $output);
 
         if (!in_array('ok', $output) || $this->getCurrentTag() !== $latestReleaseTag) {
-            return back()->with('error', __('Update failed. Run manually').': cd '.$this->basePath.' && git checkout -f '.$latestReleaseTag);
+            exec('cd '.$this->basePath.' && git checkout -f '.$currentTag);
+            return back()->with('error', __('Update failed'));
         }
 
         $updateScripts = array_filter(array_map(function ($release) use ($currentTag) {
@@ -59,7 +62,8 @@ class UpdateController extends Controller
             unset($updateOutput);
             exec('cd ' . $this->basePath . ' && sh ' . $updateScript['path'], $updateOutput);
             if (!in_array('ok', $updateOutput)) {
-                return back()->with('error', __('Update script failed at :script. Run manually', ['script' => $updateScript['script']]).': cd ' . resource_path('updatescripts/') . ' && sh ' . implode(' && sh ', array_column($updateScripts, 'script')));
+                exec('cd '.$this->basePath.' && git checkout -f '.$currentTag);
+                return back()->with('error', __('Update script failed at :script.'));
             }
             unset($updateScripts[$key]);
         }
@@ -89,16 +93,22 @@ class UpdateController extends Controller
 
     private function findReleases(): array
     {
+        if($this->releases) {
+            return $this->releases;
+        }
+
         try {
             $response = $this->githubClient->get('https://api.github.com/repos/marcoridder/cerea-client/releases');
-            if ($response->successful()) {
-                return $response->json();
+            if (!$response->successful()) {
+                throw new \Exception($response->json('message'));
             }
-            throw new \Exception($response->json('message'));
+            $this->releases = $response->json();
         } catch (\Exception $exception) {
             report($exception);
             abort(500);
         }
+
+        return $this->releases;
     }
 
     private function findLatestRelease(): array

@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Routing\Router;
+use App\Http\Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(["prefix" => getLanguagePrefix()], function() {
-    Route::get('/wifi', [\App\Http\Controllers\WiFiController::class, 'wifi'])->name('api.wifi');
-    Route::get('/checkUpdate', [\App\Http\Controllers\UpdateController::class, 'checkUpdate'])->name('api.checkUpdate');
-    Route::get('/systemdata', [\App\Http\Controllers\DashboardController::class, 'systemdata'])->name('api.systemdata');
-});
+$router = app('router');
+
+$router
+    ->prefix(getLanguagePrefix())
+    ->group(function (Router $router) {
+        $router->get('/wifi', [Controllers\WiFiController::class, 'wifi'])->name('api.wifi');
+        $router->get('/checkUpdate', [Controllers\UpdateController::class, 'checkUpdate'])->name('api.checkUpdate');
+        $router->get('/systemdata', [Controllers\DashboardController::class, 'systemdata'])->name('api.systemdata');
+    });

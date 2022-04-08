@@ -15,18 +15,6 @@ class SettingsController extends Controller
      */
     private $filesystem;
 
-    private $configItems = [
-        [
-            'key' => 'system_name',
-            'name' => 'Systeem naam',
-        ],
-        [
-            'key' => 'cerea_path',
-            'name' => 'Cerea locatie',
-            'default' => '/home/pi/Cerea30050hz/',
-        ],
-    ];
-
     public function __construct(Filesystem $filesystem)
     {
         $this->filesystem = $filesystem;
@@ -39,7 +27,7 @@ class SettingsController extends Controller
         exec('cd '.base_path().' && git describe --tags', $gitTagOutput);
 
         return view('settings')
-            ->with('configItems', $this->configItems)
+            ->with('configItems', $this->getConfigItems())
             ->with('config', collect($config))
             ->with('cereaClientVersion', $gitTagOutput[0] ?? null)
             ->with('languages', config('locale')['languages'])
@@ -57,5 +45,15 @@ class SettingsController extends Controller
         $this->filesystem->put('appconfig.php', "<?php\n return ".var_export($appConfig, 1)." ;");
 
         return redirect(route('settings.index'))->with('status', __('Saved'));
+    }
+
+    private function getConfigItems(): array
+    {
+        return [
+            [
+                'key' => 'system_name',
+                'name' => __('Systemname'),
+            ],
+        ];
     }
 }

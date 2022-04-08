@@ -46,6 +46,11 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold">{{ config('appconfig.system_name') }}</a>
+                        </li>
+                    </ul>
 {{--                    <ul class="navbar-nav ml-auto">--}}
 {{--                        <li class="nav-item">--}}
 {{--                            <a class="nav-link" href="">{{ __('Login') }}</a>--}}

@@ -96,7 +96,7 @@
                 <a href="{{ route('update.update') }}">
                     <button id="js-updateBtn" type="button" class="btn btn-success" hidden>{{ __('Update') }}</button>
                 </a>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">{{ __('Cancel') }}</button>
+                <button id="js-updateCancelBtn" type="button" class="btn btn-primary" data-dismiss="modal">{{ __('Cancel') }}</button>
             </div>
         </div>
     </div>
@@ -106,6 +106,12 @@
     (function($) {
         $('#js-checkUpdateBtn').on('click', function(){
             checkUpdate();
+        });
+
+        $('#js-updateBtn').on('click', function(){
+                $('#js-updateBtn').prop("disabled", true);
+                $('#js-updateCancelBtn').prop("disabled", true);
+                $('#js-updateBtn').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> {{ __('Update') }}');
         });
     })(jQuery);
 

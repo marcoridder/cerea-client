@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers;
+use Illuminate\Routing\Router;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,25 +13,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(["prefix" => getLanguagePrefix()], function() {
-    Route::get('/', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard.index');
+$router = app('router');
 
-    Route::get('fields', [\App\Http\Controllers\FieldController::class, 'fields'])->name('fields.index');
-    //Route::get('fields/{field}/edit', [\App\Http\Controllers\FieldController::class, 'editField'])->name('field.edit');
-    Route::get('fields/{field}/download', [\App\Http\Controllers\FieldController::class, 'downloadField'])->name('field.download');
-    Route::get('cerea', [\App\Http\Controllers\CereaController::class, 'index'])->name('cerea.index');
-    Route::get('cerea/backup', [\App\Http\Controllers\CereaController::class, 'backup'])->name('cerea.backup');
-    Route::get('cerea/app/{version}/download', [\App\Http\Controllers\CereaController::class, 'appDownload'])->name('cerea.app-download');
+$router
+    ->prefix(getLanguagePrefix())
+    ->group(function (Router $router) {
+        $router->get('/', [Controllers\DashboardController::class, 'index'])->name('dashboard.index');
 
-    Route::get('settings', [\App\Http\Controllers\SettingsController::class, 'index'])->name('settings.index');
-    Route::post('settings', [\App\Http\Controllers\SettingsController::class, 'save'])->name('settings.save');
-    Route::get('update', [\App\Http\Controllers\UpdateController::class, 'update'])->name('update.update');
+        $router->get('fields', [Controllers\FieldController::class, 'fields'])->name('fields.index');
+        $router->post('fields/upload', [Controllers\FieldController::class, 'uploadField'])->name('fields.upload');
+        //$router->get('fields/{field}/edit', [Controllers\FieldController::class, 'editField'])->name('field.edit');
+        $router->get('fields/{field}/download', [Controllers\FieldController::class, 'downloadField'])->name('field.download');
 
-    Route::get('wifi', [\App\Http\Controllers\WiFiController::class, 'index'])->name('wifi.index');
-    Route::post('wifi', [\App\Http\Controllers\WiFiController::class, 'save'])->name('wifi.save');
-    Route::get('wifi/delete/{ssid}', [\App\Http\Controllers\WiFiController::class, 'delete'])->name('wifi.delete');
+        $router->get('cerea', [Controllers\CereaController::class, 'index'])->name('cerea.index');
+        $router->get('cerea/backup', [Controllers\CereaController::class, 'backup'])->name('cerea.backup');
+        $router->get('cerea/app/{version}/download', [Controllers\CereaController::class, 'appDownload'])->name('cerea.app-download');
 
-    Route::get('logs', function () {
-        return view('logs');
-    })->name('logs');
+        $router->get('settings', [Controllers\SettingsController::class, 'index'])->name('settings.index');
+        $router->post('settings', [Controllers\SettingsController::class, 'save'])->name('settings.save');
+
+        $router->get('update', [Controllers\UpdateController::class, 'update'])->name('update.update');
+
+        $router->get('wifi', [Controllers\WiFiController::class, 'index'])->name('wifi.index');
+        $router->post('wifi', [Controllers\WiFiController::class, 'save'])->name('wifi.save');
+        $router->get('wifi/delete/{ssid}', [Controllers\WiFiController::class, 'delete'])->name('wifi.delete');
+
+        $router->get('logs', function () {
+            return view('logs');
+        })->name('logs');
 });

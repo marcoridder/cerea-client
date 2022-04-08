@@ -9,9 +9,9 @@
     "No update available, we are working on it": "",
     "Update available: :tag <br>Releasedate: :date": "",
     "Failed to retrieve release": "",
-    "Update failed. Run manually": "",
+    "Update failed": "",
     "Updated to version :version": "",
-    "Update script failed at :script. Run manually": "",
+    "Update script failed at :script": "",
     "Saved": "",
     "Fields": "",
     "WiFi": "",
@@ -19,6 +19,7 @@
     "Language": "",
     "Save": "",
     "System Settings": "",
+    "Systemname": "",
     ":appName version :version": "",
     "Check for update": "",
     "Cancel": "",
@@ -42,5 +43,10 @@
     "Download": "",
     "Download Cerea backup": "",
     "Cerea app": "",
-    "No versions found": ""
+    "No versions found": "",
+    "Upload field": "",
+    "Choose field file": "",
+    "No patterns.txt found": "",
+    "Field :clientName/:fieldName uploaded": "",
+    "Upload field failed (:message)": ""
 }

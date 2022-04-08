@@ -26,6 +26,7 @@ let sassOptions = {
 mix.scripts([
     'resources/js/jquery-3.5.1.min.js',
     'vendor/twbs/bootstrap/dist/js/bootstrap.js',
+    'resources/js/bs-custom-file-input.js',
     'resources/js/app.js',
 ], publicPath + '/assets/js/app.js')
     .sass('resources/sass/app.scss', publicPath + '/assets/css').options(sassOptions)

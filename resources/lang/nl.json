@@ -9,9 +9,9 @@
     "No update available, we are working on it": "Geen update beschikbaar, we werken eraan",
     "Update available: :tag <br>Releasedate: :date": "Update beschikbaar: :tag <br>Release datum: :date",
     "Failed to retrieve release": "Kan release niet ophalen",
-    "Update failed. Run manually": "Update mislukt. Voer handmatig uit",
+    "Update failed": "Update mislukt",
     "Updated to version :version": "Geüpdatet naar versie :version",
-    "Update script failed at :script. Run manually": "Update script mislukt bij :version. Voer handmatig uit",
+    "Update script failed at :script": "Update script mislukt bij :script",
     "Saved": "Opgeslagen",
     "Fields": "Percelen",
     "WiFi": "",
@@ -19,6 +19,7 @@
     "Language": "Taal",
     "Save": "Opslaan",
     "System Settings": "Systeem instellingen",
+    "Systemname": "Systeemnaam",
     ":appName version :version": ":appName versie :version",
     "Check for update": "Controleer op updates",
     "Cancel": "Annuleren",
@@ -42,5 +43,10 @@
     "Download": "",
     "Download Cerea backup": "",
     "Cerea app": "",
-    "No versions found": "Geen versies gevonden"
+    "No versions found": "Geen versies gevonden",
+    "Upload field": "Upload perceel",
+    "Choose field file": "Kies perceel bestand",
+    "No patterns.txt found": "Geen patterns.txt gevonden",
+    "Field :clientName/:fieldName uploaded": "Perceel :clientName/:fieldName toegevoegd",
+    "Upload field failed (:message)": "Toevoegen perceel mislukt (:message)"
 }
