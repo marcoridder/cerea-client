@@ -45,9 +45,17 @@ class FieldController extends Controller
             for ($i = 0; $i < $this->zipArchive->numFiles; $i++) {
                 $filename = $this->zipArchive->getNameIndex($i);
                 if (basename($filename) === 'patterns.txt') {
+                    [$clientName, $fieldName] = explode('/', $filename);
+
+                    if (
+                        app()->environment('production')
+                        && file_exists(config('appconfig.cerea_path') . "/Data/$clientName")
+                    ) {
+                        exec('sudo chown pi:pi -R '.config('appconfig.cerea_path') . "/Data/$clientName");
+                    }
+
                     $this->zipArchive->extractTo(config('appconfig.cerea_path') . '/Data/', $filename);
                     $this->zipArchive->close();
-                    [$clientName, $fieldName] = explode('/', $filename);
 
                     return redirect()->back()->with('status', __("Field :clientName/:fieldName uploaded", ['clientName' => $clientName, 'fieldName' => $fieldName]));
                 }
