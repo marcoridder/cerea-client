@@ -42,11 +42,15 @@
     "Patterns": "Linien",
     "Download": "Herunterladen",
     "Download Cerea backup": "Laden Sie das Cerea-Backup herunter",
-    "Cerea app": "",
+    "Cerea Android app": "",
     "No versions found": "Keine Versionen gefunden",
     "Upload field": "Hochladen Felder",
     "Choose field file": "Wählen Felder Datei",
-    "No patterns.txt found": "Kein patterns.txt gefunden",
+    "No field found": "Kein Felder gefunden",
     "Field :clientName/:fieldName uploaded": "Felder :clientName/:fieldName hinzugefügt",
-    "Upload field failed (:message)": "Hinzugefügt Felder gescheitert (:message)"
+    "Upload field failed (:message)": "Hinzugefügt Felder gescheitert (:message)",
+    "Download failed": "Herunterladen fehlgeschlagen",
+    "Contours and patterns will be overwritten!": "Konturen und Linien werden überschrieben!",
+    "The tablet needs internet for a Cerea update.": "Das Tablet benötigt Internet für ein Cerea-Update.",
+    "Turn on 4G calling on the phone! Otherwise, the hotspot will disappear during a call.": "Schalten Sie 4G-Anrufe auf dem Telefon ein! Andernfalls verschwindet der Hotspot während eines Anrufs."
 }

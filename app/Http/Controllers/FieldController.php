@@ -17,6 +17,8 @@ class FieldController extends Controller
      */
     private $filesystem;
 
+    protected array $files = ['patterns.txt', 'contour.txt'];
+
     public function __construct(
         Filesystem $filesystem,
         ZipArchive $zipArchive
@@ -36,15 +38,16 @@ class FieldController extends Controller
         return view('fields')->with('fields', $fields);
     }
 
-    public function uploadField(Request $request)
+    public function uploadField(Request $request): \Illuminate\Http\RedirectResponse
     {
         try {
             $file = $request->file('file');
             $this->zipArchive->open($file->getRealPath());
-
+            $patternFileFound = false;
             for ($i = 0; $i < $this->zipArchive->numFiles; $i++) {
                 $filename = $this->zipArchive->getNameIndex($i);
-                if (basename($filename) === 'patterns.txt') {
+                if (in_array(basename($filename), $this->files, true)) {
+                    $patternFileFound = true;
                     [$clientName, $fieldName] = explode('/', $filename);
 
                     if (
@@ -55,18 +58,20 @@ class FieldController extends Controller
                     }
 
                     $this->zipArchive->extractTo(config('appconfig.cerea_path') . '/Data/', $filename);
-                    $this->zipArchive->close();
-
-                    return redirect()->back()->with('status', __("Field :clientName/:fieldName uploaded", ['clientName' => $clientName, 'fieldName' => $fieldName]));
                 }
             }
-            throw new \Exception(__('No patterns.txt found'));
+            $this->zipArchive->close();
+            if($patternFileFound) {
+                return redirect()->back()->with('status', __("Field :clientName/:fieldName uploaded", ['clientName' => $clientName, 'fieldName' => $fieldName]));
+            }
+
+            throw new \Exception(__('No field found'));
         } catch (\ValueError | \Exception $exception) {
             return redirect()->back()->with('error', __('Upload field failed (:message)', ['message' => $exception->getMessage()]));
         }
     }
 
-    public function downloadField(string $fieldSlug)
+    public function downloadField(string $fieldSlug): \Symfony\Component\HttpFoundation\BinaryFileResponse|\Illuminate\Http\RedirectResponse
     {
         if($field = $this->getField($fieldSlug)) {
             $zip = $this->zipArchive;
@@ -75,15 +80,20 @@ class FieldController extends Controller
             if ($zip->open(storage_path($fileName), ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
                 $files = $this->filesystem->allFiles($field['name']);
                 foreach ($files as $file) {
-                    if(basename($file) === 'patterns.txt') {
+                    if (in_array(basename($file), $this->files, true)) {
                         $zip->addFile(config('appconfig.cerea_path') . '/Data/' . $file, $file);
-                        $zip->close();
-                        return response()->download(storage_path($fileName), date('Y-m-d_H-i') . '_' . $field['slug'] . '.zip')->deleteFileAfterSend();
                     }
                 }
+                if(!$zip->numFiles) {
+                    return redirect()->back()->with('error', __('Download failed'));
+                }
+                $zip->close();
+
+                return response()->download(storage_path($fileName), date('Y-m-d_H-i') . '_' . $field['slug'] . '.zip')->deleteFileAfterSend();
             }
         }
-        abort(404);
+
+        return redirect()->back()->with('error', __('Download failed'));
     }
 
     public function editField(string $fieldSlug): View
@@ -107,7 +117,9 @@ class FieldController extends Controller
                 'slug' => $slug = Str::slug(str_replace('/', '-', $field)),
                 'downloadUrl' => route('field.download', [$slug]),
 //                'editUrl' => route('field.edit', [$slug]),
-                'patterns' => $this->getPatterns($field)
+                'patterns' => $patterns = $this->getPatterns($field),
+                'contour' => $contour = $this->getContour($field),
+                'downloadable' => ($patterns || $contour),
             ];
         }, $fields);
     }
@@ -140,5 +152,16 @@ class FieldController extends Controller
 
         preg_match_all('/\,[\d]\,(.*?)\,/m', $patterns , $names);
         return $names[1];
+    }
+
+    protected function getContour(string $field): ?string
+    {
+        try {
+            $contour = $this->filesystem->get($field.'/contour.txt');
+        } catch (ContractFileNotFoundException $exception) {
+            return null;
+        }
+
+        return $contour;
     }
 }

@@ -28,6 +28,9 @@
                             {{ __('No WiFi network connected') }}
                         </div>
                     @endif
+                    <div class="alert alert-info">
+                        <i class="fas fa-info"></i> {{ __('Turn on 4G calling on the phone! Otherwise, the hotspot will disappear during a call.') }}
+                    </div>
                     <div class="card">
                         <div class="card-header">
                             {{ __('WiFi networks') }}

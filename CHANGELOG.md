@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.2.2] - 2022-05-16
+### Fixed
+- Fields download and upload includes contours.txt
+- Add information to WiFi and Cerea
+
 ## [1.2.1] - 2022-04-08
 ### Fixed
 - Fields upload files owner update

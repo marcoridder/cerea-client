@@ -24,7 +24,10 @@
                         <div class="col-md-4">
                             <div class="card">
                                 <div class="card-header">
-                                    {{ __('Cerea app') }}
+                                    {{ __('Cerea Android app') }}
+                                    <div class="alert alert-info">
+                                        <i class="fas fa-info"></i> {{ __('The tablet needs internet for a Cerea update.') }}
+                                    </div>
                                 </div>
 
                                 <div class="card-body">

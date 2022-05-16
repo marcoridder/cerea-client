@@ -14,13 +14,19 @@
 
                     <div class="card-body">
                         @if (session('status'))
-                            <div class="alert alert-success" role="alert">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 {{ session('status') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
                         @endif
                         @if (session('error'))
-                            <div class="alert alert-danger" role="alert">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 {{ session('error') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
                         @endif
                         <div class="container-fluid content-row">
@@ -36,7 +42,7 @@
                                                             <div class="card-header">
                                                                 {{ $field['name'] }}
 
-                                                                @if($field['patterns'])
+                                                                @if($field['downloadable'])
                                                                     <a href="{{ $field['downloadUrl'] }}" class="btn btn-primary float-right">
                                                                         <i class="fa fa-download" aria-hidden="true"></i>
                                                                     </a>
@@ -77,13 +83,18 @@
                 <form method="post" enctype="multipart/form-data" action="{{ route('fields.upload') }}" id="formUploadField">
                     @csrf
                     <div class="modal-header">
-                        <h5 class="modal-title" id="addNetworkModalLabel">{{ __('Upload field') }}</h5>
+                        <h5 class="modal-title">{{ __('Upload field') }}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="container">
+
+                                <div class="alert alert-warning">
+                                    {{ __('Contours and patterns will be overwritten!') }}
+                                </div>
+
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input type="file" name="file" class="custom-file-input" id="file" required>
