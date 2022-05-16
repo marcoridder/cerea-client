@@ -42,11 +42,15 @@
     "Patterns": "",
     "Download": "",
     "Download Cerea backup": "",
-    "Cerea app": "",
+    "Cerea Android app": "",
     "No versions found": "",
     "Upload field": "",
     "Choose field file": "",
-    "No patterns.txt found": "",
+    "No field found": "",
     "Field :clientName/:fieldName uploaded": "",
-    "Upload field failed (:message)": ""
+    "Upload field failed (:message)": "",
+    "Download failed": "",
+    "Contours and patterns will be overwritten!": "",
+    "The tablet needs internet for a Cerea update.": "",
+    "Turn on 4G calling on the phone! Otherwise, the hotspot will disappear during a call.": ""
 }

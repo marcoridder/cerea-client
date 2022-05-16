@@ -42,11 +42,15 @@
     "Patterns": "Lijnen",
     "Download": "",
     "Download Cerea backup": "",
-    "Cerea app": "",
+    "Cerea Android app": "",
     "No versions found": "Geen versies gevonden",
     "Upload field": "Upload perceel",
     "Choose field file": "Kies perceel bestand",
-    "No patterns.txt found": "Geen patterns.txt gevonden",
+    "No field found": "Geen perceel gevonden",
     "Field :clientName/:fieldName uploaded": "Perceel :clientName/:fieldName toegevoegd",
-    "Upload field failed (:message)": "Toevoegen perceel mislukt (:message)"
+    "Upload field failed (:message)": "Toevoegen perceel mislukt (:message)",
+    "Download failed": "Downloaden mislukt",
+    "Contours and patterns will be overwritten!": "Contouren en lijnen worden overschreven!",
+    "The tablet needs internet for a Cerea update.": "De tablet heeft internet nodig voor een Cerea update.",
+    "Turn on 4G calling on the phone! Otherwise, the hotspot will disappear during a call.": "4G bellen aanzetten op de telefoon! Anders valt de hotspot weg tijdens bellen."
 }
