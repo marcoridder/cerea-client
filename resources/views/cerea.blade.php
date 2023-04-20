@@ -21,7 +21,7 @@
                         </div>
                     @endif
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-lg-4 col-md-6">
                             <div class="card">
                                 <div class="card-header">
                                     {{ __('Cerea Android app') }}
@@ -48,7 +48,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-lg-4 col-md-6">
                             <a href="{{ route('cerea.backup') }}" class="js-download-backup-a">
                                 <button type="button" class="btn btn-primary js-download-backup-btn">{{ __('Download Cerea backup') }}</button>
                             </a>

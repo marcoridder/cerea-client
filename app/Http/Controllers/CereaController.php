@@ -37,7 +37,6 @@ class CereaController extends Controller implements CereaServerClientAwareInterf
         try {
             $cereaVersions = $this->cereaServerClient->getCereaVersions();
         } catch (\Exception $exception) {
-
         }
 
         return view('cerea')

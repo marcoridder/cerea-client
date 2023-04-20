@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     {{ __('WiFi') }}
@@ -45,11 +45,11 @@
                                         {{ $savedWifiNetwork['ssid'] }}
                                         <a
                                            href="#"
-                                           class="js-delete-wifi"
+                                           class="btn btn-danger float-right js-delete-wifi"
                                            data-ssid="{{ $savedWifiNetwork['ssid'] }}"
                                            data-delete-url="{{ route('wifi.delete', $savedWifiNetwork['ssid']) }}"
                                         >
-                                            <i class="fas fa-trash-alt"></i>
+                                            <i class="fas fa-trash-alt" aria-hidden="true"></i>
                                         </a>
                                     </li>
                                 @endforeach
@@ -74,7 +74,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>{!! __('Are you sure you want to delete :ssid', ['ssid' => '<span id="js-deleteModal-ssid">SSID</span>']) !!}</p>
+                <p>{!! __('Are you sure you want to delete :name', ['name' => '<span id="js-deleteModal-ssid">SSID</span>']) !!}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancel') }}</button>

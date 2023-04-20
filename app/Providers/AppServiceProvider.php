@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Helpers\WpaSupplicantHelper;
 use App\Http\Controllers\CereaController;
+use App\Http\Controllers\NtripController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\FieldController;
 use App\Http\Controllers\WiFiController;
@@ -48,6 +49,12 @@ class AppServiceProvider extends ServiceProvider
             ->needs(Filesystem::class)
             ->give(function () {
                 return Storage::disk(app()->environment('local') ? 'local' : 'wpa_supplicant');
+            });
+
+        $this->app->when(NtripController::class)
+            ->needs(Filesystem::class)
+            ->give(function () {
+                return Storage::disk('cerea');
             });
     }
 

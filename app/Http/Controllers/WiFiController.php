@@ -51,7 +51,7 @@ class WiFiController extends Controller
 
         $this->wpaSupplicantHelper->writeWpaSupplicant($appConfig['wifi']);
 
-        return redirect(route('wifi.index'))->with('status', __('":ssid" has been added', ['ssid' => $data['ssid']]));
+        return redirect(route('wifi.index'))->with('status', __('":name" has been added', ['name' => $data['ssid']]));
     }
 
     public function delete($ssid)
@@ -62,7 +62,7 @@ class WiFiController extends Controller
 
         $this->wpaSupplicantHelper->writeWpaSupplicant($appConfig['wifi']);
 
-        return redirect(route('wifi.index'))->with('status', __('":ssid" is deleted', ['ssid' => $ssid]));
+        return redirect(route('wifi.index'))->with('status', __('":name" is deleted', ['name' => $ssid]));
     }
 
     public function wifi()
