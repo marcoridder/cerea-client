@@ -59,9 +59,9 @@
                                                                 </p>
                                                                 {{--                                            <a href="{{ $field['editUrl'] }}" class="btn btn-primary">Bewerken</a>--}}
                                                             </div>
-                                                            <div class="card-footer text-muted">
+{{--                                                            <div class="card-footer text-muted">--}}
                                                                 {{--                                        2 days ago--}}
-                                                            </div>
+{{--                                                            </div>--}}
                                                         </div>
                                                     </div>
                                                 @endforeach

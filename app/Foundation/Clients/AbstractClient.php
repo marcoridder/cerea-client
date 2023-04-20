@@ -101,7 +101,9 @@ abstract class AbstractClient implements Contracts\ClientInterface
             $this->response = $this->guzzle->request($method, $this->_buildUrl($uri), $options);
         } catch (GuzzleException $e) {
             report($e);
-            $this->response = $e->getResponse();
+            if (method_exists($e, 'getResponse')) {
+                $this->response = $e->getResponse();
+            }
             $this->_log();
             if ( $this->response ) {
                 throw new ApiException($this->response->getBody()->__toString(), $e->getCode(), $e);

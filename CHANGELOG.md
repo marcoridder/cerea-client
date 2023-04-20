@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.2.3] - 2023-04-20
+### Fixed
+- Manage NTRIP profiles
+- Fix servererror on Cerea page if no internet connection
+
 ## [1.2.2] - 2022-05-16
 ### Fixed
 - Fields download and upload includes contours.txt

@@ -38,6 +38,11 @@ $router
         $router->post('wifi', [Controllers\WiFiController::class, 'save'])->name('wifi.save');
         $router->get('wifi/delete/{ssid}', [Controllers\WiFiController::class, 'delete'])->name('wifi.delete');
 
+        $router->get('ntrip', [Controllers\NtripController::class, 'index'])->name('ntrip.index');
+        $router->post('ntrip', [Controllers\NtripController::class, 'save'])->name('ntrip.save');
+        $router->post('ntrip/add', [Controllers\NtripController::class, 'add'])->name('ntrip.add');
+        $router->get('ntrip/delete/{name}', [Controllers\NtripController::class, 'delete'])->name('ntrip.delete');
+
         $router->get('logs', function () {
             return view('logs');
         })->name('logs');

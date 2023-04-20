@@ -38,6 +38,9 @@
                             <a class="nav-link {{ Route::is('wifi.index') ? 'active' : '' }}" href="{{ route('wifi.index') }}">{{ __('WiFi') }}</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link {{ Route::is('ntrip.index') ? 'active' : '' }}" href="{{ route('ntrip.index') }}">{{ __('NTRIP') }}</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link {{ Route::is('cerea.index') ? 'active' : '' }}" href="{{ route('cerea.index') }}">Cerea</a>
                         </li>
                         <li class="nav-item">
