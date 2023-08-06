@@ -4,10 +4,10 @@ echo '################################'
 echo 'INSTALLING WEBSERVER'
 echo '################################'
 
-sudo wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+sudo wget --no-check-certificate -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php.list
-sudo apt update -y
-sudo apt install -y vim apache2 php8.0 php8.0-xml php8.0-mbstring php8.0-curl php8.0-zip
+sudo apt -o "Acquire::https::Verify-Peer=false" update -y
+sudo apt -o "Acquire::https::Verify-Peer=false" install -y vim apache2 php8.0 php8.0-xml php8.0-mbstring php8.0-curl php8.0-zip
 sudo a2enmod rewrite
 
 # Run apache as user pi
@@ -23,7 +23,7 @@ sudo rm -rf /srv/cereaclient
 sudo mkdir /srv/cereaclient && sudo chown pi:pi /srv/cereaclient
 git clone https://github.com/marcoridder/cerea-client.git /srv/cereaclient
 cd /srv/cereaclient || exit
-git checkout v1.2.1;
+git checkout v1.2.4;
 cp .env.prod .env
 cp resources/configfiles/appconfig.php config/appconfig.php
 

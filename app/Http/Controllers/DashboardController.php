@@ -27,7 +27,7 @@ class DashboardController extends Controller
 
     public function systemdata(): array
     {
-        exec('vcgencmd measure_temp', $temperatureResult);
+        exec('sudo vcgencmd measure_temp', $temperatureResult);
 
         if (app()->environment('local')) {
             $temperatureResult = [
