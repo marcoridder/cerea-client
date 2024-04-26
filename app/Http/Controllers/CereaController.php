@@ -62,6 +62,7 @@ class CereaController extends Controller implements CereaServerClientAwareInterf
 
     public function appDownload(string $version)
     {
+        ini_set('memory_limit', '256M');
         $storage = Storage::disk('local');
         $fileName = 'com.cerea.Cerea'.$version.'.apk';
 
