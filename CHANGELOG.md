@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.2.4] - 2024-04-26
+### Fixed
+- Download Cerea 300.41 memory_limit issue due large file
+
 ## [1.2.3] - 2023-04-20
 ### Fixed
 - Manage NTRIP profiles
