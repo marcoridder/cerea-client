@@ -62,5 +62,10 @@
     "mountpoint": "",
     "username": "",
     "password": "",
-    ":name already exists": ""
+    ":name already exists": "",
+    "Reboot Cerea ECU": "",
+    "Shutdown Cerea ECU": "",
+    "ECU showdown in progress...": "",
+    "ECU reboot in progress...": "",
+    "ECU is online!": ""
 }
