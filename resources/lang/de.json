@@ -62,5 +62,10 @@
     "mountpoint": "Mountpoint",
     "username": "Nutzername",
     "password": "Passwort",
-    ":name already exists": ":name ist bereits vorhanden"
+    ":name already exists": ":name ist bereits vorhanden",
+    "Reboot Cerea ECU": "Cerea ECU neustarten",
+    "Shutdown Cerea ECU": "Cerea ECU ausschalten",
+    "ECU showdown in progress...": "ECU wird heruntergefahren...",
+    "ECU reboot in progress...": "ECU wird neu gestartet...",
+    "ECU is online!": "ECU wurde neu gestartet!"
 }

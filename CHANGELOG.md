@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.2.5] - 2025-02-14
+### Added
+- Shutdown and reboot ECU
+
 ## [1.2.4] - 2024-04-26
 ### Fixed
 - Download Cerea 300.41 memory_limit issue due large file

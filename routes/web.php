@@ -43,6 +43,9 @@ $router
         $router->post('ntrip/add', [Controllers\NtripController::class, 'add'])->name('ntrip.add');
         $router->get('ntrip/delete/{name}', [Controllers\NtripController::class, 'delete'])->name('ntrip.delete');
 
+        $router->get('reboot', [Controllers\SystemController::class, 'reboot'])->name('system.reboot');
+        $router->get('off', [Controllers\SystemController::class, 'off'])->name('system.off');
+
         $router->get('logs', function () {
             return view('logs');
         })->name('logs');
